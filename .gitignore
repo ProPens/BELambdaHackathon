@@ -1,3 +1,6 @@
+#Local Config and Secrets
+local_config/
+
 # Logs
 logs
 *.log
