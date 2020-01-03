@@ -1,11 +1,11 @@
 
 exports.seed = function(knex) {
-  return knex('SubjectCategory').insert([
-    {name: 'English'},
-    {name: 'Science'},
-    {name: 'Math'},
-    {name: 'Social Studies'},
-    {name: 'Arts'},
-    {name: 'Athletics'}
+  return knex('subjectcategory').insert([
+    {name: 'english'},
+    {name: 'science'},
+    {name: 'math'},
+    {name: 'social studies'},
+    {name: 'arts'},
+    {name: 'athletics'}
   ]);
 };

@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
     return knex.schema
-    .createTable('SubjectCategory', category => {
+    .createTable('subjectcategory', category => {
         category.increments('id');
 
         category
@@ -10,7 +10,7 @@ exports.up = function(knex) {
             .unique()        
         })
 
-    .createTable('Occupations', tbl =>{
+    .createTable('occupations', tbl =>{
         tbl.increments('id');
 
         tbl
@@ -19,28 +19,28 @@ exports.up = function(knex) {
             .unique();
         
         tbl
-            .boolean('English')
+            .boolean('english')
             .defaultTo(false);
         tbl
-            .boolean('Science')
+            .boolean('science')
             .defaultTo(false);
         tbl
-            .boolean('Math')
+            .boolean('math')
             .defaultTo(false);
         tbl
-            .boolean('Social_Studies')
+            .boolean('social_studies')
             .defaultTo(false);
         tbl
-            .boolean('Arts')
+            .boolean('arts')
             .defaultTo(false);
         tbl
-            .boolean('Athletics')
+            .boolean('athletics')
             .defaultTo(false);
         });
 };
 
 exports.down = function(knex) {
     return knex.schema
-        .dropTableIfExists('Occupations')
-        .dropTableIfExists('SubjectCategory');
+        .dropTableIfExists('occupations')
+        .dropTableIfExists('subjectcategory');
 };

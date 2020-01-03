@@ -1,58 +1,25 @@
 const db = require('../db/dbConfig.js');
 
 module.exports = {
-  findEnglish,
-  findScience,
-  findMath,
-  findSocialStudies,
-  findArts,
-  findAthletics,
+  findSubject,
   addUser,
   find,
   login
 };
 
-
-
-function find() {
-  return db('Occupations');
+function find(table) {
+  return db(table).select('*');
 }
 
-function findEnglish() {
-  return db('Occupations as O')
-    .select('O.name')
-    .where('English', true);
+async function findSubject(subject) {
+  const careerFits = await db('occupations')
+    .returning('name')
+    .select('name')
+    .where(subject, true);
+
+  return careerFits;
 }
 
-function findScience() {
-  return db('Occupations as O')
-    .select('O.name')
-    .where('Science', true);
-}
-
-function findMath() {
-  return db('Occupations as O')
-    .select('O.name')
-    .where('Math', true);
-}
-
-function findSocialStudies() {
-  return db('Occupations as O')
-    .select('O.name')
-    .where('Social_Studies', true);
-}
-
-function findArts() {
-  return db('Occupations as O')
-    .select('O.name')
-    .where('Arts', true);
-}
-
-function findAthletics() {
-  return db('Occupations as O')
-    .select('O.name')
-    .where('Athletics', true);
-}
 async function addUser(user) {
   const [addedUser] = await db('users')
     .returning(['id', 'fullname', 'username'])
@@ -60,16 +27,6 @@ async function addUser(user) {
   return addedUser;
 }
 
-function find(table) {
-  return db(table).select('*');
-}
-
- function login(filter) {
+function login(filter) {
   return db('users').where(filter);
 }
-
-// async function login(filter) {
-//  db('users').where(filter);
-
- 
-// }
