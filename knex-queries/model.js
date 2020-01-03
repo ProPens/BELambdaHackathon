@@ -6,7 +6,8 @@ module.exports = {
   find,
   login,
   addPoint,
-  subtractPoint
+  subtractPoint,
+  getStudent
 };
 
 function find(table) {
@@ -47,4 +48,12 @@ async function subtractPoint([userId, study]) {
     .where('id', userId)
     .decrement(study, 1);
   return subjectValue[0];
+}
+
+async function getStudent(studentId) {
+  const student = await db('users')
+    .returning('*')
+    .where('id', studentId);
+
+  return student;
 }

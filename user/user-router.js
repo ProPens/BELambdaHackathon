@@ -10,6 +10,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const student = await DB.getStudent(userId);
+    res.status(200).json(student);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.post('/:id/:subject', async (req, res) => {
   const userId = req.params.id;
   const study = req.params.subject;
