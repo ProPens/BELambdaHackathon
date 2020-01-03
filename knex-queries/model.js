@@ -9,7 +9,7 @@ module.exports = {
   findMath,
   findSocialStudies,
   findArts,
-  findAthletics
+  findAthletics,
 
   addUser,
   find,
