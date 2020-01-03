@@ -14,9 +14,9 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
-// server.use('/api/user', authenticate, userRouter);
+server.use('/api/user', authenticate, userRouter);
 // TURN AUTHENTICATE BACK ON FOR PRODUCTION
-server.use('/api/user', userRouter);
+// server.use('/api/user', userRouter);
 server.use('/api/occupations', modelRouter);
 // Other Routhers
 // ----------------
