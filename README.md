@@ -71,3 +71,7 @@ returns:
 }
 
 
+
+
+https://pro-pens.herokuapp.com/api/auth/login
+https://pro-pens.herokuapp.com/api/auth/register
