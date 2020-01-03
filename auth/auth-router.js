@@ -43,7 +43,7 @@ router.post('/login', async (req, res) => {
       const user = await DB.login({ username }).first();
       bcrypt.compareSync(password, user.password);
       if (user && bcrypt.compareSync(password, user.password)) {
-        const token = genToken(user);
+        const token = await genToken(user);
         res.status(202).json({ id: user.id, username: user.username, token });
       } else {
         res.status(406).json({ message: 'Invalid Credentials' });
@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-function genToken(user) {
+async function genToken(user) {
   const payload = {
     userid: user.id,
     username: user.username
