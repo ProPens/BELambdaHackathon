@@ -1,14 +1,12 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 
-const environment = process.env.NODE_ENV || 'development';
+// const environment = process.env.NODE_ENV || 'development';
 const DB = require('../knex-queries/model.js');
 const bcrypt = require('bcryptjs');
-//  require('../local_config/secrets.js');
-const secrets =
-  environment === 'development'
-    ? require('../local_config/secrets.js')
-    : require('./secrets.js');
+// const secrets =  require('../local_config/secrets.js');
+
+const secrets = require('./secrets.js')
 
 router.get('/', async (req, res) => {
   const allUsers = await DB.find('users');
@@ -37,11 +35,14 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
+    console.log(req.body, "REQ.BODY")
     if (!(req.body.username && req.body.password)) {
       res.status(406).json({ error: 'Invalid Username or Password' });
     } else {
       let { username, password } = req.body;
+      console.log({username, password}, "{USERNAME PASSWORD}")
       const user = await DB.login({ username }).first();
+      console.log(user, "USER")
       bcrypt.compareSync(password, user.password);
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = genToken(user);
