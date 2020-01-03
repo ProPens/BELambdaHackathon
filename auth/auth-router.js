@@ -5,9 +5,10 @@ const environment = process.env.NODE_ENV || 'development';
 const DB = require('../knex-queries/model.js');
 const bcrypt = require('bcryptjs');
 // require('../local_config/secrets.js');
-const secrets = environment == 'development'
-    ? require('../local_config/secrets.js')
-    : require('./secrets.js');
+const secrets =
+  environment != 'development'
+    ? require('./secrets.js')
+    : require('../local_config/secrets.js');
 
 router.get('/', async (req, res) => {
   const allUsers = await DB.find('users');
