@@ -4,9 +4,10 @@ const jwt = require('jsonwebtoken');
 // const environment = process.env.NODE_ENV || 'development';
 const DB = require('../knex-queries/model.js');
 const bcrypt = require('bcryptjs');
-const secrets = process.env.JWT_SECRET;
+// const secrets = process.env.JWT_SECRET;
 
 // const secrets = require('../local_config/secrets.js');
+const secrets = 'canoodle';
 
 router.get('/', async (req, res) => {
   const allUsers = await DB.find('users');
