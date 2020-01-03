@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
       let { username, password } = req.body;
 
       const user = await DB.login({username}).first();
-
+console.log(password, user.password)
       bcrypt.compareSync(password, user.password);
 
       if (user && bcrypt.compareSync(password, user.password)) {
