@@ -8,13 +8,12 @@ if (fs.existsSync('config/secrets.js')) {
 }
 module.exports = (req, res, next) => {
   const token = req.headers.authorization;
-  
+
   if (token) {
     jwt.verify(token, secret.jwtSecret, (err) => {
       if (err) {
         res.status(401).json({ you: "aren't registered" });
       } else {
-        
         next();
       }
     });

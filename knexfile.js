@@ -1,7 +1,4 @@
-// var pg = require('pg');
-
 module.exports = {
-
   development: {
     client: 'pg',
     connection: 'postgres://localhost:5432/',
@@ -13,7 +10,7 @@ module.exports = {
     },
     useNullAsDefault: true
   },
-  
+
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
@@ -24,9 +21,7 @@ module.exports = {
       directory: './db/seeds/production'
     },
     pool: { min: 2, max: 10 },
-    
-    useNullAsDefault: true
-    
-  }
 
+    useNullAsDefault: true
+  }
 };
