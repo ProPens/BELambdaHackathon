@@ -1,5 +1,5 @@
 #Local Config and Secrets
-local_config/
+config/
 
 # Logs
 logs

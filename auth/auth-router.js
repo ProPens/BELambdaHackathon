@@ -1,13 +1,9 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-
-// const environment = process.env.NODE_ENV || 'development';
 const DB = require('../knex-queries/model.js');
 const bcrypt = require('bcryptjs');
-// const secrets = process.env.JWT_SECRET;
 
-// const secrets = require('../local_config/secrets.js');
-const secrets = 'canoodle';
+const secrets = require('../config/secrets.js');
 
 router.get('/', async (req, res) => {
   const allUsers = await DB.find('users');
@@ -40,18 +36,12 @@ router.post('/login', async (req, res) => {
       res.status(406).json({ error: 'Invalid Username or Password' });
     } else {
       let { username, password } = req.body;
-
       const user = await DB.login({ username }).first();
-
-      console.log(password, user.password);
       bcrypt.compareSync(password, user.password);
-      console.log('horse here');
       if (user && bcrypt.compareSync(password, user.password)) {
-        console.log('horse here');
         const token = genToken(user);
         res.status(202).json({ id: user.id, username: user.username, token });
       } else {
-        console.log('horse there');
         res.status(406).json({ message: 'Invalid Credentials' });
       }
     }
@@ -61,15 +51,13 @@ router.post('/login', async (req, res) => {
 });
 
 function genToken(user) {
-  console.log(user, 'USER');
   const payload = {
-    person: user
+    userid: user.id,
+    username: user.username
   };
-  console.log(payload, 'PAYLOAD');
+
   const options = { expiresIn: '2h' };
-  console.log(payload, secrets, options);
-  const token = jwt.sign(payload, secrets, options);
-  console.log(token, 'TOKEN HERE');
+  const token = jwt.sign(payload, secrets.jwtSecret, options);
   return token;
 }
 
