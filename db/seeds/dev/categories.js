@@ -6,6 +6,6 @@ exports.seed = function(knex) {
     {name: 'Math'},
     {name: 'Social Studies'},
     {name: 'Arts'},
-    {name: 'Althletics'}
+    {name: 'Athletics'}
   ]);
 };

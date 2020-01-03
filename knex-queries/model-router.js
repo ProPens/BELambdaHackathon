@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/Reuire-English', (req, res) => {
+router.get('/Require-English', (req, res) => {
     Occupations.findEnglish()
         .then(occupation => {
             res.json(occupation);
@@ -26,7 +26,7 @@ router.get('/Reuire-English', (req, res) => {
     });
 });
 
-router.get('/Reuire-Science', (req, res) => {
+router.get('/Require-Science', (req, res) => {
     Occupations.findScience()
         .then(occupation => {
             res.json(occupation);
@@ -37,7 +37,7 @@ router.get('/Reuire-Science', (req, res) => {
     });
 });
 
-router.get('/Reuire-Math', (req, res) => {
+router.get('/Require-Math', (req, res) => {
     Occupations.findMath()
         .then(occupation => {
             res.json(occupation);
@@ -48,7 +48,7 @@ router.get('/Reuire-Math', (req, res) => {
     });
 });
 
-router.get('/Reuire-SocialStudies', (req, res) => {
+router.get('/Require-SocialStudies', (req, res) => {
     Occupations.findSocialStudies()
         .then(occupation => {
             res.json(occupation);
@@ -59,7 +59,7 @@ router.get('/Reuire-SocialStudies', (req, res) => {
     });
 });
 
-router.get('/Reuire-Arts', (req, res) => {
+router.get('/Require-Arts', (req, res) => {
     Occupations.findArts()
         .then(occupation => {
             res.json(occupation);
@@ -70,7 +70,7 @@ router.get('/Reuire-Arts', (req, res) => {
     });
 });
 
-router.get('/Reuire-Athletics', (req, res) => {
+router.get('/Require-Athletics', (req, res) => {
     Occupations.findAthletics()
         .then(occupation => {
                 res.json(occupation);
