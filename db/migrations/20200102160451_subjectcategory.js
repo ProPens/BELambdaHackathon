@@ -7,7 +7,7 @@ exports.up = function(knex) {
         category
             .string('name',20)
             .notNullable()
-            .unique()        
+                   
         })
 
     .createTable('occupations', tbl =>{
