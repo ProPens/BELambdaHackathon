@@ -4,7 +4,9 @@ module.exports = {
   findSubject,
   addUser,
   find,
-  login
+  login,
+  addPoint,
+  subtractPoint
 };
 
 function find(table) {
@@ -29,4 +31,20 @@ async function addUser(user) {
 
 function login(filter) {
   return db('users').where(filter);
+}
+
+async function addPoint([userId, study]) {
+  const subjectValue = await db('users')
+    .returning(['id', study, 'username'])
+    .where('id', userId)
+    .increment(study, 1);
+  return subjectValue[0];
+}
+
+async function subtractPoint([userId, study]) {
+  const subjectValue = await db('users')
+    .returning(['id', study, 'username'])
+    .where('id', userId)
+    .decrement(study, 1);
+  return subjectValue[0];
 }
