@@ -7,7 +7,10 @@ module.exports = {
   login,
   addPoint,
   subtractPoint,
-  getStudent
+  getStudent,
+  addAssignment,
+  getAssignment,
+  getAllAssign
 };
 
 function find(table) {
@@ -56,4 +59,22 @@ async function getStudent(studentId) {
     .where('id', studentId);
 
   return student;
+}
+
+async function addAssignment(assignment) {
+  const added = await db('assignments')
+    .returning('*')
+    .insert(assignment);
+  return added[0];
+}
+
+async function getAssignment(assignNum) {
+  const assignment = await db('assignments')
+    .returning('*')
+    .where('id', assignNum);
+  return assignment[0];
+}
+async function getAllAssign() {
+  const assignments = await db('assignments').returning('*');
+  return assignments;
 }
