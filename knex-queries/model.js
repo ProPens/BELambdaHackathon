@@ -1,26 +1,18 @@
 const db = require('../db/dbConfig.js');
 
 module.exports = {
-  // add,
   findEnglish,
   findScience,
   findMath,
   findSocialStudies,
   findArts,
   findAthletics,
-
   addUser,
   find,
   login
-
-  // delete
-  // whatever
-  // etc.
 };
 
-// async function find(table) {
-//   return await db(table).select('*');
-// }
+
 
 function find() {
   return db('Occupations');
@@ -67,14 +59,17 @@ async function addUser(user) {
     .insert(user);
   return addedUser;
 }
-// function login(filter) {
-//   return db('users').where(filter);
-// }
 
 function find(table) {
   return db(table).select('*');
 }
 
-function login(filter) {
+async function login(filter) {
   return db('users').where(filter);
+}
+
+async function login(filter) {
+ const logger =  await db('users').returning('*').where(filter);
+
+ return logger;
 }
