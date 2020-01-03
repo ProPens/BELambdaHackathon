@@ -4,7 +4,8 @@ module.exports = {
   findSubject,
   addUser,
   find,
-  login
+  login,
+  mort
 };
 
 function find(table) {
@@ -29,4 +30,10 @@ async function addUser(user) {
 
 function login(filter) {
   return db('users').where(filter);
+}
+
+function mort(num) {
+  return db('users')
+    .select('*')
+    .where('id', num);
 }

@@ -71,7 +71,25 @@ returns:
 }
 
 
+##LOGIN##
 
+##POST## https://pro-pens.herokuapp.com/api/auth/login
 
-https://pro-pens.herokuapp.com/api/auth/login
-https://pro-pens.herokuapp.com/api/auth/register
+#With body:#
+
+{
+	"username": "tdog",
+	"password": "woof"
+}
+
+##RETURNS##
+
+{
+	"id":1,
+	
+	"username":"tdog",
+	
+	"token":
+	
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEsInVzZXJuYW1lIjoidGRvZyIsImlhdCI6MTU3ODAzMjI5MiwiZXhwIjoxNTc4MDM5NDkyfQ.-s12LsSZyg8uirpAfVlNfGat438iQFl7V2Ec1YD3Rzo"
+	}

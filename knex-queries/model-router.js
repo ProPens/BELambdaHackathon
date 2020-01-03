@@ -1,7 +1,5 @@
 const express = require('express');
-
 const occupations = require('./model.js');
-
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -13,6 +11,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// <:subject> = arts, math, science, social_studies, athletics, or english, etc.
 router.get('/:subject', async (req, res) => {
   const subject = req.params.subject;
   try {
