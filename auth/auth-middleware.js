@@ -1,17 +1,16 @@
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
-const environment = process.env.NODE_ENV || 'development';
-
-const secrets =
-  environment === 'development'
-    ? require('../local_config/secrets.js')
-    : require('./secrets.js');
-
+if (fs.existsSync('config/secrets.js')) {
+  var secret = require('../config/secrets.js');
+} else {
+  var secret = { jwtSecret: process.env.JWT_SECRET };
+}
 module.exports = (req, res, next) => {
   const token = req.headers.authorization;
   
   if (token) {
-    jwt.verify(token, secrets.jwtSecret, (err) => {
+    jwt.verify(token, secret.jwtSecret, (err) => {
       if (err) {
         res.status(401).json({ you: "aren't registered" });
       } else {

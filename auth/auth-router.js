@@ -1,9 +1,13 @@
 const router = require('express').Router();
+const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const DB = require('../knex-queries/model.js');
 const bcrypt = require('bcryptjs');
-
-const secrets = require('../config/secrets.js');
+if (fs.existsSync('config/secrets.js')) {
+  var secret = require('../config/secrets.js');
+} else {
+  var secret = { jwtSecret: process.env.JWT_SECRET };
+}
 
 router.get('/', async (req, res) => {
   const allUsers = await DB.find('users');
@@ -57,7 +61,7 @@ function genToken(user) {
   };
 
   const options = { expiresIn: '2h' };
-  const token = jwt.sign(payload, secrets.jwtSecret, options);
+  const token = jwt.sign(payload, secret.jwtSecret, options);
   return token;
 }
 
