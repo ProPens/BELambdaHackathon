@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 // const environment = process.env.NODE_ENV || 'development';
 const DB = require('../knex-queries/model.js');
 const bcrypt = require('bcryptjs');
-const secrets =  process.env.JWT_SECRET;
+const secrets = process.env.JWT_SECRET;
 
 // const secrets = require('../local_config/secrets.js');
 
@@ -40,14 +40,17 @@ router.post('/login', async (req, res) => {
     } else {
       let { username, password } = req.body;
 
-      const user = await DB.login({username}).first();
-console.log(password, user.password)
+      const user = await DB.login({ username }).first();
+      
+      console.log(password, user.password);
       bcrypt.compareSync(password, user.password);
-
+      console.log("horse here")
       if (user && bcrypt.compareSync(password, user.password)) {
+        console.log("horse here")
         const token = genToken(user);
         res.status(202).json({ id: user.id, username: user.username, token });
       } else {
+        console.log("horse there")
         res.status(406).json({ message: 'Invalid Credentials' });
       }
     }
