@@ -73,7 +73,7 @@ router.get('/Reuire-Arts', (req, res) => {
 router.get('/Reuire-Athletics', (req, res) => {
     Occupations.findAthletics()
         .then(occupation => {
-            res.json(occupation);
+                res.json(occupation);
             })
     .catch(err => {
         res.status(500)
