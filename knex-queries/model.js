@@ -64,12 +64,12 @@ function find(table) {
   return db(table).select('*');
 }
 
-async function login(filter) {
+ function login(filter) {
   return db('users').where(filter);
 }
 
-async function login(filter) {
- const logger =  await db('users').returning('*').where(filter);
+// async function login(filter) {
+//  db('users').where(filter);
 
- return logger;
-}
+ 
+// }

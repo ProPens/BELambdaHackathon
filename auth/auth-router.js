@@ -6,7 +6,7 @@ const DB = require('../knex-queries/model.js');
 const bcrypt = require('bcryptjs');
 const secrets =  process.env.JWT_SECRET;
 
-// const secrets = require('./secrets.js');
+// const secrets = require('../local_config/secrets.js');
 
 router.get('/', async (req, res) => {
   const allUsers = await DB.find('users');
@@ -35,14 +35,15 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    
     if (!(req.body.username && req.body.password)) {
       res.status(406).json({ error: 'Invalid Username or Password' });
     } else {
       let { username, password } = req.body;
-      const user = await DB.login({ username }).first();
-      console.log(user, "USER")
+
+      const user = await DB.login({username}).first();
+
       bcrypt.compareSync(password, user.password);
+
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = genToken(user);
         res.status(202).json({ id: user.id, username: user.username, token });
