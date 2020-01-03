@@ -1,41 +1,29 @@
-# Pro Pens Backend
+Pro Pens Backend
 
+Base URL:
 
+https://pro-pens.herokuapp.com/api
 
-## Base URL: 
+Register
 
-###### https://pro-pens.herokuapp.com/api
+POST /auth/register
 
-### Register
-
-#### POST  /auth/register
-
-
-
-{
-	"fullname": ["Beatrice", "White"],
-	"email": "golden@girls.com",
-	"school_level": "elementary",
-	"username": "betty",
-	"password": "staygold"
-	
+{ "fullname": ["Beatrice", "White"],
+"email": "golden@girls.com",
+"school_level": "elementary",
+"username": "betty",
+"password": "staygold"
 }
 
-###### returns:
+returns:
 
 {
 
-  "id": 1,
-
-  "fullname": [
-
-​    "Beatrice",
-
-​    "White"
-
-  ],
-
-  "username": "betty"
-
+"id": 1,
+"fullname":
+[
+​ "Beatrice",
+​ "White"
+],
+"username": "betty"
 }
-
