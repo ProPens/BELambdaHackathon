@@ -16,7 +16,7 @@ exports.up = function(knex) {
         tbl
             .string('name', 150)
             .notNullable()
-            .unique();
+            
         
         tbl
             .boolean('english')
